@@ -1,0 +1,152 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-warm-white: var(--warm-white);
+  --color-chocolate: var(--chocolate);
+  --color-coffee: var(--coffee);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-beige: var(--beige);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--chocolate);
+  --color-primary-foreground: var(--cream);
+  --color-accent: var(--gold);
+  --color-accent-foreground: var(--chocolate);
+
+  --shadow-luxe: 0 30px 80px -20px color-mix(in oklab, var(--chocolate) 30%, transparent);
+  --shadow-gold: 0 20px 60px -20px color-mix(in oklab, var(--gold) 55%, transparent);
+  --shadow-soft: 0 10px 30px -12px color-mix(in oklab, var(--chocolate) 20%, transparent);
+
+  --gradient-gold: linear-gradient(135deg, #E8B75B 0%, #D9A441 45%, #B8842A 100%);
+  --gradient-warm: linear-gradient(180deg, #FFF7EE 0%, #F2E5D5 100%);
+  --gradient-dark: linear-gradient(135deg, #4A2C22 0%, #6B4423 100%);
+
+  --radius-lg: 1.25rem;
+}
+
+:root {
+  --cream: #FFF7EE;
+  --warm-white: #FAF7F2;
+  --chocolate: #4A2C22;
+  --coffee: #6B4423;
+  --gold: #D9A441;
+  --gold-soft: #E8C079;
+  --beige: #F2E5D5;
+
+  --background: var(--warm-white);
+  --foreground: var(--chocolate);
+  --muted: #EFE6D8;
+  --muted-foreground: #7A5A48;
+  --border: #E8DCC7;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    cursor: none;
+  }
+
+  @media (max-width: 768px) {
+    body { cursor: auto; }
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--chocolate);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility gold-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility gold-bg {
+  background: var(--gradient-gold);
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--cream) 55%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--gold) 25%, transparent);
+}
+
+@utility glass-dark {
+  background: color-mix(in oklab, var(--chocolate) 65%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translate3d(0,0,0); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50% { transform: translate3d(20px,-40px,0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes rise {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes steam {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-60px) scale(1.6); opacity: 0; }
+}
+
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-rotate-slow { animation: rotate-slow 30s linear infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 40%, transparent), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
